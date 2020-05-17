@@ -1,35 +1,19 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, TouchableWithoutFeedback } from 'react-native';
-
-const diceImage = [
-  "https://upload.wikimedia.org/wikipedia/commons/c/c5/Dice-1.png",
-  "https://upload.wikimedia.org/wikipedia/commons/1/18/Dice-2.png",
-  "https://upload.wikimedia.org/wikipedia/commons/7/70/Dice-3.png",
-  "https://upload.wikimedia.org/wikipedia/commons/a/a9/Dice-4.png",
-  "https://upload.wikimedia.org/wikipedia/commons/6/6c/Dice-5.png",
-  "https://upload.wikimedia.org/wikipedia/commons/7/7a/Dice-6E.png"
-]
-
-const randomFace = () => Math.round(Math.random() * 5);
-
-function Dice() {
-  const [face, setFace] = useState(randomFace());
-
-  return (
-    <TouchableWithoutFeedback onPress={() => {
-      setFace(randomFace());
-    }}>
-      <Image
-        source={{ uri: diceImage[face] }}
-        style={{ width: 200, height: 200 }} />
-    </TouchableWithoutFeedback>
-  );
-}
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { Dice } from './components/Dice'
 
 export default function App() {
+  const randomFace = () => 1 + Math.round(Math.random() * 5); // random number in [1-6]
+  const [face, setFace] = useState(randomFace()); // start with a random face
+  const rollDice = () => setFace(randomFace());  // roll to a random face
+
   return (
     <View style={styles.container}>
-      <Dice />
+
+      <TouchableWithoutFeedback onPress={() => rollDice()}>
+        <Dice face={face} />
+      </TouchableWithoutFeedback>
+
     </View>
   );
 }
