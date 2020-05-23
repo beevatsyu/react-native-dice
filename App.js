@@ -10,7 +10,7 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <TouchableWithoutFeedback onPress={() => rollDice()}>
+      <TouchableWithoutFeedback onPress={rollDice}>
         <Dice face={face} />
       </TouchableWithoutFeedback>
 
